@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TimeSlide</title>
+  <style>
+    .container {
+      width: 50px;
+      height: 80px;
+      overflow: hidden;
+      position: relative;
+    }
+    img {
+      position: absolute;
+      width: 50px;
+      height: 80px;
+      top: 80px;
+    }
+    .colon {
+      position: absolute;
+      top: 0;
+    }
+    div {
+      float: left;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" id="hours">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+  <div class="container" id="hour">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+  <div class="container">
+    <img src="time/colon.jpg" class="colon"/>
+  </div>
+  <div class="container" id="minutes">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+  <div class="container" id="minute">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+  <div class="container">
+    <img src="time/colon.jpg" class="colon"/>
+  </div>
+  <div class="container" id="seconds">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+  <div class="container" id="second">
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+    <img src="time/0.jpg" />
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    var hour = document.getElementById('hour').getElementsByTagName('img');
+    var hours = document.getElementById('hours').getElementsByTagName('img');
+    var minute = document.getElementById('minute').getElementsByTagName('img');
+    var minutes = document.getElementById('minutes').getElementsByTagName('img');
+    var second = document.getElementById('second').getElementsByTagName('img');
+    var seconds = document.getElementById('seconds').getElementsByTagName('img');
+
+
+    timeslide(second,1000,10);
+    timeslide(seconds,10000,6);
+    timeslide(minute,60000,10);
+    timeslide(minutes,600000,6);
+    timeslide(hour,3600000,6);
+    timeslide(hours,36000000,3);
+
+    function timeslide(obj,time,m) {
+      obj[0].style.top = 0;
+      var num = 0;
+      var num1 = 0;
+      var num2 = 2;
+      var n = 1;
+
+      setInterval(function(){
+        doMove(obj[num],'top',10,-80);
+        obj[num2].style.top = '80px';
+        num2++;
+        if(num2 == 3){
+          num2 = 0;
+        };
+        num1 = num +1;
+        if(num1 == 3){
+          num1 = 0;
+        };
+        doMove(obj[num1],'top',10,0);
+        num++;
+        if(num == 3){
+          num = 0;
+        };
+        obj[num].src = 'time/' + n + '.jpg';
+        n++;
+        if (n == m) {
+          n = 0;
+        }
+      },time);
+
+    }
+  </script>
+</body>
+</html>

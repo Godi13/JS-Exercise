@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OOP</title>
+</head>
+<body>
+  <h1>详见代码</h1>
+  <script>
+
+  // 工厂方式
+  // function createPerson(name) {
+  //   //原料
+  //   var obj = new Object();
+  //   //加工
+  //   obj.name = name;
+  //   obj.showName = function () {
+  //     alert(this.name);
+  //   }
+  //   //出厂
+  //   return obj;
+  // }
+  //
+  // var p1 = createPerson('Tom');
+  // p1.showName();
+  // var p2 = createPerson('Jerry');
+  // p2.showName();
+
+
+  //构造函数
+  // function CreatePerson(name) {
+  //   this.name = name;
+  //   this.showName = function () {
+  //     alert(this.name);
+  //   }
+  // }
+  //
+  // var p1 = new CreatePerson('Tom');
+  // p1.showName();
+  // var p2 = new CreatePerson('Jerry');
+  // p2.showName();
+  // alert(p1.showName == p2.showName);
+
+
+  //原型
+  // var arr1 = [1,2,3,4,5];
+  // var arr2 = [2,2,2,2,2];
+  //
+  // Array.prototype.sum = function () {
+  //   var result = 0;
+  //   for (var i = 0; i < this.length; i++) {
+  //     result += this[i];
+  //   }
+  //   return result;
+  // };
+  //
+  // alert(arr1.sum());
+  // alert(arr2.sum());
+
+
+  //工厂方式-原型
+  // function CreatePerson(name) {
+  //   this.name = name;
+  // }
+  // CreatePerson.prototype.showName = function () {
+  //   alert(this.name);
+  // }
+  //
+  // var p1 = new CreatePerson('Tom');
+  // // p1.showName();
+  // var p2 = new CreatePerson('Jerry');
+  // // p2.showName();
+  // alert(p1.showName == p2.showName);
+
+
+
+  </script>
+
+</body>
+</html>

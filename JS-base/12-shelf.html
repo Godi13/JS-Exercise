@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" />
+  <title> </title>
+  <style>
+  h2,ul,li{list-style:none;padding:0;margin:0;}
+  ul{width:400px;border:3px solid #000;}
+  h2{font-size:20px;padding-left:10px;background:#36BA54;}
+  a{display:inline-block;width:50px;height:30px;text-decoration:none;text-align:center;line-height:30px;margin-left:5px;}
+  a:hover{background:#429400;}
+  .span1{display:inline-block;width:200px;}
+  .span2{display:inline-block;width:50px;height:30px;text-align:center;line-height:30px;}
+  .span2:hover{cursor:pointer;background:#429400;}
+  span{margin-left:10px;}
+  li{height:32px;line-height:32px;border-bottom:1px solid #000;}
+  .text{font-size:16px;width:200px;height:20px;margin-left:10px;}
+  .div2{display:none;}
+
+  </style>
+  <script >
+  window.onload=function(){
+    var oUl=document.getElementById('list');
+    var aLi=oUl.getElementsByTagName('li');
+
+    for (var i=0;i<aLi.length ;i++ )
+    {
+      fn(aLi[i]);
+    }
+
+    function fn(oLi){
+      var aDiv=oLi.getElementsByTagName('div');
+      var aSpan=oLi.getElementsByTagName('span');
+      var aBtn=oLi.getElementsByTagName('a');
+      var oText=oLi.getElementsByTagName('input')[0];
+      var str='';
+
+      aSpan[1].onclick=function(){
+        str=aSpan[0].innerHTML
+        oText.value=str;
+        aDiv[0].style.display='none';
+        aDiv[1].style.display='block';
+      }
+
+      aBtn[0].onclick=function(){
+        str=oText.value;
+        aSpan[0].innerHTML=str;
+        aDiv[0].style.display='block';
+        aDiv[1].style.display='none';
+
+      }
+
+      aBtn[1].onclick=function(){
+        aSpan[0].innerHTML=str;
+        aDiv[0].style.display='block';
+        aDiv[1].style.display='none';
+      }
+
+
+    }
+
+  }
+  </script>
+</head>
+
+<BODY>
+  <ul id="list">
+    <h2>分类名称</h2>
+    <li>
+      <div class="div1"><span class="span1">妙味课堂</span><span class="span2">修改</span></div>
+      <div class="div2"><input class="text" type="text" value=""/><a href="#">保存</a><a href="#">取消</a></div>
+    </li>
+    <li>
+      <div class="div1"><span class="span1">妙味课堂</span><span class="span2">修改</span></div>
+      <div class="div2"><input class="text" type="text" value=""/><a href="#">保存</a><a href="#">取消</a></div>
+    </li>
+    <li>
+      <div class="div1"><span class="span1">妙味课堂</span><span class="span2">修改</span></div>
+      <div class="div2"><input class="text" type="text" value=""/><a href="#">保存</a><a href="#">取消</a></div>
+    </li>
+    <li>
+      <div class="div1"><span class="span1">妙味课堂</span><span class="span2">修改</span></div>
+      <div class="div2"><input class="text" type="text" value=""/><a href="#">保存</a><a href="#">取消</a></div>
+    </li>
+
+  </ul>
+</BODY>
+</HTML>

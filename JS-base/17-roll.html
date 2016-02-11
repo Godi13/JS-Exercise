@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roll</title>
+  <style>
+    #container {
+      width: 200px;
+      height: 400px;
+      margin: 20px auto;
+      border:2px solid #333;
+      position: relative;
+      overflow: hidden;
+    }
+    header,footer{
+      width: 100%;
+      height: 30px;
+      background: lightseagreen;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+    }
+    .up,.down {
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      border:10px solid transparent;
+      border-bottom: 10px solid red;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    .up:hover,.down:hover {
+      opacity: 1;
+    }
+    .down {
+      top: 10px;
+      border:10px solid transparent;
+      border-top: 10px solid red;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    ul li {
+      list-style: none;
+      height: 20px;
+    }
+    .raw {
+      height: 50px;
+    }
+    #scroll {
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+      top: 0px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <header><div class="up"></div></header>
+    <div id="scroll">
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+      <div class="raw"></div>
+    </div>
+    <footer><div class="down"></div></footer>
+  </div>
+
+  <script>
+    var arr = ['red','yellow','blue','green'];
+    var aRaw = document.getElementsByClassName('raw');
+    var up = document.getElementsByClassName('up')[0];
+    var down = document.getElementsByClassName('down')[0];
+    var sc = document.getElementById('scroll');
+    var timer = null;
+    var num = 0;
+
+    for (var i = 0; i < aRaw.length; i++) {
+      aRaw[i].style.background = arr[i%arr.length];
+    }
+
+    up.onmousedown = function () {
+      timer = setInterval(function(){
+        if (parseInt(sc.style.top) >= 0) {
+          clearInterval(timer);
+        } else {
+          sc.style.top = num++ + 'px';
+        }
+      });
+    }
+    down.onmousedown = function () {
+      timer = setInterval(function(){
+        if (parseInt(sc.style.top) <= -30*(aRaw.length-1)) {
+          clearInterval(timer);
+        } else {
+          sc.style.top = num-- + 'px';
+        }
+      });
+    }
+    down.onmouseup = clear;
+    up.onmouseup = clear;
+
+    function clear() {
+      clearInterval(timer);
+    }
+
+  </script>
+</body>
+</html>

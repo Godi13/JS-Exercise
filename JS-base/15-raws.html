@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Raws</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    ul li {
+      list-style: none;
+      height: 20px;
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script>
+    var aLi = document.getElementsByTagName('li');
+    var arr = ['red','yellow'];
+
+    for (var i = 0; i < aLi.length; i++) {
+      aLi[i].index = i;
+      aLi[i].onOff = false;
+      aLi[i].style.background = arr[i%arr.length];
+      aLi[i].onmouseover = function () {
+        if (!this.onOff) {
+          this.style.background = 'grey';
+        }
+      }
+      aLi[i].onclick = function () {
+        for (var i = 0; i < aLi.length; i++) {
+          aLi[i].onOff = false;
+          aLi[i].style.background = arr[i%arr.length];
+        }
+        this.onOff = true;
+        this.style.background = 'black';
+      }
+      aLi[i].onmouseout = function () {
+        if (!this.onOff) {
+          this.style.background = arr[this.index % arr.length];
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

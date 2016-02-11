@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star</title>
+  <style>
+    ul li {
+      display: inline-block;
+      list-style: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      margin-right: 4px;
+    }
+
+  </style>
+</head>
+<body>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+  <ul>
+    总体评价：
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <span></span>
+  </ul>
+
+  <script>
+    var oUl = document.getElementsByTagName('ul');
+    var pl = ['很差','较差','一般','推荐','力荐'];
+
+    for (var i = 0; i < oUl.length; i++) {
+      select(oUl[i]);
+    }
+
+    function select(ul) {
+      var onOff = false;
+      var num = null;
+      var li = ul.getElementsByTagName('li');
+      var oSpan = ul.getElementsByTagName('span')[0];
+
+      for (var i = 0; i < li.length; i++) {
+        li[i].index = i;
+
+        li[i].onmouseover = function () {
+          oSpan.innerHTML = pl[this.index];
+          for (var i = 0; i < li.length; i++) {
+            li[i].style.background = '#fff';
+          }
+          for (var i = 0; i < this.index + 1; i++) {
+            if (this.index < 2) {
+              li[i].style.background = 'grey';
+            } else {
+              li[i].style.background = 'pink';
+            }
+          }
+        }
+
+        li[i].onmouseout = function () {
+          oSpan.innerHTML = pl[num];
+          for (var i = 0; i < li.length; i++) {
+            li[i].style.background = '#fff';
+          }
+          if (!onOff) {
+            oSpan.innerHTML = '';
+          } else {
+            for (var i = 0; i <= num; i++) {
+              // if (num < 2) {
+              //   li[i].style.background = 'grey';
+              // } else {
+              //   li[i].style.background = 'pink';
+              // }
+              num < 2 ? li[i].style.background = 'grey' : li[i].style.background = 'pink';
+            }
+          }
+        }
+
+        li[i].onclick = function () {
+          onOff = true;
+          num = this.index;
+        }
+      }
+
+    }
+
+
+  </script>
+</body>
+</html>

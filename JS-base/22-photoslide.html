@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>photoslide</title>
+  <style>
+    img {
+      width: 300px;
+      height: 400px;
+      position: absolute;
+    }
+    #container {
+      width: 300px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+    #move {
+      position: absolute;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <script src="main.js"></script>
+  <script>
+    var arr =['img/1.png','img/2.png','img/3.png','img/4.png'];
+    document.body.innerHTML = '<h1>未完成</h1><div id="container"></div>';
+    var oCon = document.getElementById('container');
+    for (var i = 0; i < arr.length; i++) {
+      oCon.innerHTML += '<img src="' + arr[i] + '" />';
+      var aImg = document.getElementsByTagName('img');
+      if (i == 0) {
+        aImg[i].style.left = 0 + 'px';
+      } else {
+        aImg[i].style.left = 300 + 'px';
+      }
+    }
+
+    var num = 0;
+    var num1 = 0;
+    var num2 = 2;
+
+    setInterval(function(){
+      doMove(aImg[num],'left',10,-300);
+      aImg[num2].style.left = '300px';
+      num2++;
+      if(num2 == 4){
+        num2 = 0;
+      };
+      num1 = num +1;
+      if(num1 == 4){
+        num1 = 0;
+      };
+      doMove(aImg[num1],'left',10,0);
+      num++;
+      if(num == 4){
+        num = 0;
+      };
+    },3000);
+
+
+  </script>
+</body>
+</html>

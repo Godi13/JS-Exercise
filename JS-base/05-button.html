@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="0" />
+  <input type="button" value="0" />
+  <input type="button" value="0" />
+
+  <p>0</p>
+  <p>0</p>
+  <p>0</p>
+
+  <script>
+  var oBtn = document.getElementsByTagName('input');
+  var oP = document.getElementsByTagName('p');
+  var arr = ['A','B','C'];
+
+  for (var i = 0; i < oBtn.length; i++) {
+    oBtn[i].index = i;
+    oBtn[i].onclick = function () {
+      this.value = arr[this.index];
+      oP[this.index].innerHTML = arr[this.index];
+    }
+  }
+
+  </script>
+</body>
+</html>

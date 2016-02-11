@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    p {
+      float: left;
+      width: 350px;
+      background: #ccc;
+      margin: 0;
+    }
+    #top {
+      height: 50px;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+    ul li {
+      color: #eee;
+      list-style: none;
+      margin:0 10px;
+      padding:5px 0 5px 10px;
+      border-bottom: 1px solid #ccc;
+      width: 42px;
+      background: #aaa;
+      cursor: pointer;
+    }
+    ul li:hover {
+      background: #333;
+    }
+    ul ul li {
+      background: #bbb;
+      color: #333;
+    }
+    ul ul li:hover {
+      color: #eee;
+      background: orange;
+    }
+    #button {
+      display: none;
+    }
+    #container {
+      position: relative;
+      top: 10px;
+      clear: both;
+      border: 6px solid deeppink;
+      width: 400px;
+      height: 130px;
+      background: lightyellow;
+      display: none;
+    }
+    #title {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border-bottom: 2px red solid;
+      width: 378px;
+    }
+    span {
+      float: left;
+      display: block;
+      width: 80px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+    }
+    span:first-child {
+      margin-left: 20px;
+      background: red;
+    }
+    span:last-child {
+      border: 1px solid red;
+      top: -5px;
+      right: -5px;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      line-height: 10px;
+      font-size: 10px;
+    }
+    #find {
+      position: relative;
+      top: 70px;
+      left: 20px;
+    }
+    input {
+      height: 20px;
+      width: 150px;
+    }
+    #click {
+      width: 40px;
+    }
+    .color {
+      display: inline;
+      background: yellow;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <p>“大家冷静一下，我知道大家一时间很难接受，但是我也没办法啊。大家都知道前一段时间魔族四圣把大魔王放了出来，现在说不定什么时候就要世界末日了。本来这种规模的事情跟我们是没什么关系，但现在王国里所有的人都人心惶惶的。这段时间马戏团的收益已经少了很多了，所以我在想不如趁这段时间大家也避一避。听说勇者已经出现了，等勇者和魔王分出个胜负我们集合就好了啊。”团长难得严肃认真，但他那张臃肿的脸实在很难做出认真的表情。
+
+然后大家就乱作一团，各种怨声载道响成一片。侏儒一脸沮丧，却让人感觉更好笑。性感女郎抓紧时间向团长卖弄风骚，不可否认的是团长的胸部比她还丰满。大力士扭捏着身体各种不依，浑身的肌肉乱七八糟的鼓胀在一起。小丑满脸的沮丧，但表情实在和平时没什么区别。而我终于将那个马屁憋了回去，却错过了露出震惊表情的最佳时机。总之，大家都是各种恐慌不安，只有团长一脸的无所谓，假装半推半就的揉捏着性感女郎丰腴的屁股。</p>
+<ul>
+  <li id="list">展开</li>
+  <ul id="button">
+    <li>查找</li>
+    <li>替换</li>
+  </ul>
+</ul>
+
+<div id="container">
+  <div id="title">
+    <span>查找</span>
+    <span>替换</span>
+    <span id="close">x</span>
+  </div>
+  <div id="find">
+    <input type="text">
+    <input type="text">
+    <input id="click" type="button" value="查找">
+  </div>
+</div>
+
+
+<script>
+var list = document.getElementById('list');
+var button = document.getElementById('button');
+var find = button.getElementsByTagName('li')[0];
+var replace = button.getElementsByTagName('li')[1];
+var container = document.getElementById('container');
+var close = document.getElementById('close');
+var aSpan = container.getElementsByTagName('span');
+var aInp = container.getElementsByTagName('input');
+var oClick = document.getElementById('click');
+var oP = document.getElementsByTagName('p')[0];
+var str = oP.innerHTML;
+
+button.onOff = true;
+oClick.onOff = true;
+
+oClick.onclick = function() {
+  var val1 = aInp[0].value;
+  var val2 = aInp[1].value;
+  if (val1 == '') {
+    alert('请输入要查找的内容');
+  }
+  if (val2 == '' && !oClick.onOff) {
+    if (!window.confirm('确定要删除指定内容？')) {
+      return false;
+    }
+  }
+  if (str.indexOf(val1) == -1) {
+    alert ('没有找到' + val1);
+  }
+  if (oClick.onOff) {
+    oP.innerHTML = str.split(val1).join('<div class="color">' + val1 + '</div>');
+  } else {
+    oP.innerHTML = str.split(val1).join('<div class="color">' + val2 + '</div>');
+  }
+}
+
+list.onclick = function () {
+  if (button.onOff) {
+    button.style.display = 'block';
+    button.onOff = false;
+  } else {
+    button.style.display = 'none';
+    button.onOff = true;
+  }
+}
+
+close.onclick = function () {
+  container.style.display = 'none';
+}
+
+find.onclick = fnFind;
+aSpan[0].onclick = fnFind;
+
+function fnFind() {
+  oClick.onOff = true;
+  container.style.display = 'block';
+  aInp[1].style.visibility = 'hidden';
+  aInp[2].value = '查找';
+  aSpan[0].style.background = 'red';
+  aSpan[1].style.background = 'lightyellow';
+}
+
+replace.onclick =  fnReplace;
+aSpan[1].onclick = fnReplace;
+
+function fnReplace() {
+  oClick.onOff = false;
+  container.style.display = 'block';
+  aInp[1].style.visibility = 'visible';
+  aInp[2].value = '替换';
+  aSpan[0].style.background = 'lightyellow';
+  aSpan[1].style.background = 'red';
+}
+
+
+</script>
+</body>
+</html>

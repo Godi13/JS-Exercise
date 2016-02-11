@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  ul {
+    border-bottom: 1px solid #333;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    list-style: none;
+    border: 1px solid #333;
+    border-bottom: none;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: #eee;
+    cursor: pointer;
+  }
+  </style>
+</head>
+<body>
+  <h1>未完成</h1>
+  <ul id="list">
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+    <li>jlkajslkdjakd</li>
+  </ul>
+
+  <script>
+    window.onload = function () {
+      var oUl = document.getElementById('list');
+      var aLi = oUl.getElementsByTagName('li');
+
+      for (var i = 0; i < aLi.length; i++) {
+        fn(aLi[i]);
+      }
+
+      function fn(li) {
+        li.onmouseover = function () {
+          li.style.height = 50 + 'px';
+        }
+        li.onmouseout = function () {
+          li.style.height = 25 + 'px';
+        }
+      }
+
+    }
+
+  </script>
+</body>
+</html>

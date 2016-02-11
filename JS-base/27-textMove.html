@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TextMove</title>
+  <style>
+    #text {
+      display: block;
+      margin: 0 auto;
+      left: 50%;
+      width: 400px;
+      height: 200px;
+      font-size: 15px;
+    }
+    input {
+      display: block;
+      margin: 10px auto;
+      width: 150px;
+      height: 50px;
+      border: none;
+      background: orange;
+      font-size: 20px;
+      color: #444;
+    }
+    input:hover {
+      background: rgb(240, 134, 36);
+      color: #222;
+    }
+    p {
+      width: 400px;
+      height: 200px;
+      background: #ccc;
+      margin: 0 auto;
+      font-size: 15px;
+      overflow: scroll;
+    }
+    ul {
+      width: 300px;
+      text-align: center;
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      display: none;
+    }
+    li {
+      display: inline-block;
+      margin: 0 0 6px;
+      width: 10px;
+      height: 15px;
+      background: lightblue;
+    }
+    span {
+      display: block;
+      margin: 8px auto;
+      width: 100px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <textarea id="text" >“大家冷静一下，我知道大家一时间很难接受，但是我也没办法啊。大家都知道前一段时间魔族四圣把大魔王放了出来，现在说不定什么时候就要世界末日了。本来这种规模的事情跟我们是没什么关系，但现在王国里所有的人都人心惶惶的。这段时间马戏团的收益已经少了很多了，所以我在想不如趁这段时间大家也避一避。听说勇者已经出现了，等勇者和魔王分出个胜负我们集合就好了啊。”团长难得严肃认真，但他那张臃肿的脸实在很难做出认真的表情。
+  然后大家就乱作一团，各种怨声载道响成一片。侏儒一脸沮丧，却让人感觉更好笑。性感女郎抓紧时间向团长卖弄风骚，不可否认的是团长的胸部比她还丰满。大力士扭捏着身体各种不依，浑身的肌肉乱七八糟的鼓胀在一起。小丑满脸的沮丧，但表情实在和平时没什么区别。而我终于将那个马屁憋了回去，却错过了露出震惊表情的最佳时机。总之，大家都是各种恐慌不安，只有团长一脸的无所谓，假装半推半就的揉捏着性感女郎丰腴的屁股"</textarea>
+  <input type="button" value="把文字下移">
+  <span></span>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <p></p>
+
+
+  <script>
+    var oUl = document.getElementsByTagName('ul')[0];
+    var aLi = oUl.getElementsByTagName('li');
+    var text = document.getElementsByTagName('textarea')[0];
+    var oP = document.getElementsByTagName('p')[0];
+    var oBtn = document.getElementsByTagName('input')[0];
+    var oSpan = document.getElementsByTagName('span')[0];
+
+    oBtn.onclick = function () {
+      oUl.style.display = 'block';
+      var num = 0;
+      var str = text.value;
+      var txt = text.value;
+      var _this = this;
+      var len = str.length;
+      clearInterval(_this.timer);
+
+      _this.timer = setInterval(function() {
+        num ++;
+        oSpan.innerHTML = num + '/' + len;
+
+        oP.innerHTML = str.slice(0,num);
+        txt = txt.slice(1);
+        text.innerHTML = txt;
+
+        for (var i = 0; i < aLi.length; i++) {
+          aLi[i].style.background = 'lightblue';
+          aLi[num%aLi.length].style.background = 'seagreen';
+        }
+
+        if (num == len) {
+          clearInterval(_this.timer);
+          oUl.style.display = 'none';
+          oSpan.innerHTML = '';
+        }
+      },50);
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

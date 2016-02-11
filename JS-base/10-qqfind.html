@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input id="text" type="text">
+  <input type="button" value="判断">
+
+  <script>
+  var aIn = document.getElementsByTagName('input');
+
+  aIn[1].onclick = function () {
+    if (aIn[0].value == '') {
+      alert('请输入qq');
+      return false;
+    }
+    if (isNaN(aIn[0].value)) {
+      alert('请输入数字');
+      return false;
+    }
+    if (aIn[0].value.charAt(0) == 0) {
+      alert('不能有0在前面');
+      return false;
+    }
+    if (parseInt(aIn[0].value) != parseFloat(aIn[0].value)){
+      alert('不能是小数');
+      return false;
+    }
+    if (aIn[0].value.length < 5 || aIn[0].value.length > 10) {
+      alert('输入的数字必须在5位以上或10位以内');
+      return false;
+    }
+  }
+
+  </script>
+</body>
+</html>

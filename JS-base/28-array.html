@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array</title>
+</head>
+<body>
+  <script>
+    var arr = [1,2,2,3,4,5,6,6,7,8,8,8,9];
+
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+          arr.splice(j,1);
+          j--;
+        }
+      }
+    }
+
+    document.body.innerHTML = arr + '</br>';
+
+
+    //随机产生100个 200-350的不重复数字，并降序排列，用两个空格将数组隔开
+    var arr1 = [];
+    for (var i = 0; i < 600; i++) {
+      arr1.push(Math.round(Math.random()*150 + 200));
+    }
+
+    arr1.splice(0,arr1.length - 100);
+
+    arr1.sort(function(a,b) {
+      return b - a;
+    })
+
+    document.body.innerHTML += arr1.join('  ');
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoom</title>
+  <style>
+    #div1 { width: 180px;height: 180px;overflow: hidden;position: relative; }
+    #div1 span {width: 100px;height: 100px;background: yellow;opacity: 0.5;position: absolute;left: 0;top: 0;display: none;}
+    #div2 { width: 300px;height: 300px;position: absolute;left: 200px;top: 100px;overflow: hidden;}
+    #div2 img { position: absolute; }
+  </style>
+</head>
+<body>
+  <div id="div1">
+    <img src="../img/b2.jpg" />
+    <span></span>
+  </div>
+
+  <div id="div2">
+    <img src="../img/b1.jpg" />
+  </div>
+
+  <script>
+    window.onload = function () {
+      var oDiv1 = document.getElementById('div1');
+      var oSpan = oDiv1.getElementsByTagName('span')[0];
+
+      var oDiv2 = document.getElementById('div2');
+      var oImg = oDiv2.getElementsByTagName('img')[0];
+
+      oDiv1.onmouseover = function() {
+        oSpan.style.display = 'block';
+      }
+      oDiv1.onmouseout = function() {
+        oSpan.style.display = 'none';
+      }
+      oDiv1.onmousemove = function(ev) {
+        var ev = ev || window.event;
+
+        var L = ev.clientX - oDiv1.offsetLeft - oSpan.offsetWidth / 2;
+        var T = ev.clientY - oDiv1.offsetTop - oSpan.offsetHeight / 2;
+
+        if (L < 0) {
+          L = 0;
+        } else if (L > oDiv1.offsetWidth - oSpan.offsetWidth) {
+          L = oDiv1.offsetWidth - oSpan.offsetWidth;
+        }
+
+        if (T < 0) {
+          T = 0;
+        } else if (T > oDiv1.offsetHeight - oSpan.offsetHeight) {
+          T = oDiv1.offsetHeight - oSpan.offsetHeight;
+        }
+
+        oSpan.style.left = L + 'px';
+        oSpan.style.top = T + 'px';
+
+        var scaleX = L / (oDiv2.offsetWidth - oSpan.offsetWidth) ;
+        var scaleY = T / (oDiv2.offsetHeight - oSpan.offsetHeight);
+
+        oImg.style.left = - scaleX * (oImg.offsetWidth - oDiv2.offsetWidth) + 'px';
+        oImg.style.top = - scaleY * (oImg.offsetHeight - oDiv2.offsetHeight) + 'px';
+
+      }
+
+
+    }
+  </script>
+</body>
+</html>

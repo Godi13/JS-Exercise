@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practises</title>
+</head>
+<body>
+  <script>
+  //转驼峰
+  //var str = 'border-bottom-color';
+
+  //普通方法
+  // function test(str) {
+  //   var arr = str.split('-');
+  //   for (var i = 1; i < arr.length; i++) {
+  //     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1);
+  //   }
+  //   return arr.join('');
+  // }
+
+  //正则
+  // function test(str) {
+  //   var re = /-(\w)/g;
+  //   return str.replace(re,function($0, $1) {
+  //     return $1.toUpperCase();
+  //   })
+  // }
+
+
+  //找到最多的字母，并显示数量
+  // var str = 'jsdkhfsdffsakjkjkjkssssfsssdf';
+
+  //非josn方法
+  // var arr = [];
+  // var arr2 = [];
+  // function test(str) {
+  //   str = str.split('').sort();
+  //   for (var i = 0; i < str.length; i++) {
+  //     if (str[i] != str[i+1]) {
+  //       arr.push(str[i]);
+  //       arr2.push(i);
+  //     }
+  //   }
+  //   arr2.unshift(-1);
+  //   str = '';
+  //   for (var i = 0; i < arr.length; i++) {
+  //     str += arr[i] + ':' + (arr2[i+1] - arr2[i]) + '<br/>';
+  //   }
+  //   return str;
+  // }
+
+  //json方法
+  // function test(str) {
+  //   var obj = {};
+  //   var num = 0;
+  //   var value = '';
+  //   for (var i = 0; i < str.length; i++) {
+  //     if (!obj[str[i]]) {
+  //       obj[str[i]] = [];
+  //     }
+  //     obj[str[i]].push(str[i]);
+  //   }
+  //   for (var attr in obj) {
+  //     if (num < obj[attr].length) {
+  //       num = obj[attr].length;
+  //       value = obj[attr][0];
+  //     }
+  //   }
+  //   return '最多的是'+value+',出现了'+num+'次';
+  // }
+
+  //正则
+  // function test(str) {
+  //   var num = 0;
+  //   var value = '';
+  //   str = str.split('').sort().join('');
+  //   var re = /(\w)\1+/g;
+  //   str.replace(re,function($0,$1) {
+  //     if (num < $0.length) {
+  //       num = $0.length;
+  //       value = $1;
+  //     }
+  //   })
+  //   return '最多的字符是'+value+',数量为'+num;
+  // }
+
+
+  //千分位
+  // var str = '82267112345256';
+
+  //普通方法
+  // function test(str) {
+  //   var iNum = str.length % 3;
+  //   var prev = '';
+  //   var arr = [];
+  //   var iNow = 0;
+  //   var tmp = '';
+  //   if (iNum != 0) {
+  //     prev = str.substring(0,iNum);
+  //     arr.push(prev);
+  //   }
+  //   str = str.substring(iNum);
+  //   for (var i = 0; i < str.length; i++) {
+  //     iNow ++;
+  //     tmp += str[i];
+  //     if (iNow == 3 && tmp) {
+  //       arr.push(tmp);
+  //       tmp = '';
+  //       iNow = 0;
+  //     }
+  //   }
+  //   return arr.join(',');
+  // }
+
+  //正则
+  // function test(str) {
+  //   var re = /(?=(?!\b)(\d{3})+$)/g;
+  //   return str.replace(re,',');
+  // }
+
+
+  document.body.innerHTML = test(str);
+
+  </script>
+</body>
+</html>

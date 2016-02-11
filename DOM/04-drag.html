@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag</title>
+  <style>
+    #box1 {
+      width: 50px;
+      height: 50px;
+      background: red;
+      position: absolute;
+      z-index: 2;
+    }
+    #box2 {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 200px;
+      top: 100px;
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+
+  <script>
+    var oBox1 = document.getElementById('box1');
+    var oBox2 = document.getElementById('box2');
+
+    drag(oBox1,oBox2);
+
+    function drag(obj1,obj2) {
+
+      obj1.onmousedown = function (ev) {
+
+        var ev = ev || event;
+        var dirX = ev.clientX - this.offsetLeft;
+        var dirY = ev.clientY - this.offsetTop;
+
+        if (obj1.setCapture) {
+          obj1.setCapture();
+        }
+
+        document.onmousemove = function (ev) {
+
+          var ev = ev || event;
+
+          var L = ev.clientX - dirX;
+          var R = ev.clientY - dirY;
+
+          var L1 = obj1.offsetLeft;
+          var R1 = L1 + obj1.offsetWidth;
+          var T1 = obj1.offsetTop;
+          var B1 = T1 + obj1.offsetHeight;
+
+          var L2 = obj2.offsetLeft;
+          var R2 = L2 + obj2.offsetWidth;
+          var T2 = obj2.offsetTop;
+          var B2 = T2 + obj2.offsetHeight;
+
+          if (R1 < L2 || L1 > R2 || B1 < T2 || T1 > B2) {
+            obj2.style.background = 'green';
+          } else {
+            obj2.style.background = 'yellow';
+          }
+
+          obj1.style.left = L + 'px';
+          obj1.style.top = R + 'px';
+
+        }
+
+        document.onmouseup = function () {
+          document.onmousemove = document.onmouseup = null;
+
+          if (obj1.releaseCapture) {
+            obj1.releaseCapture();
+          }
+        }
+
+        return false;
+      }
+    }
+
+
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise</title>
+  <style>
+  body {
+    font-size: 20px;
+  }
+  a,a:hover,a:active,a:visited {
+    text-decoration: none;
+    color: rgb(47, 142, 182);
+  }
+  #list {
+    margin-left: 30px;
+  }
+  #list li {
+    cursor: pointer;
+    color: #666;
+  }
+  #list li:hover {
+    color: #222;
+  }
+  li {
+    margin: 2px;
+  }
+  div {
+    height: 0px;
+    overflow: hidden;
+  }
+  </style>
+</head>
+<body>
+  <a href="test.html">test</a>
+  <ol id="list">
+    <li class="title">JS-Base</li>
+    <div><ol></ol></div>
+    <li class="title">DOM&BOM&EVENT</li>
+    <div><ol></ol></div>
+    <li class="title">AJAX</li>
+    <div><ol></ol></div>
+    <li class="title">RegExp</li>
+    <div><ol></ol></div>
+    <li class="title">OOP</li>
+    <div><ol></ol></div>
+  </ol>
+
+  <script>
+  var aJS = ['01-div','02-qq','03-photo','04-100box','05-button','06-qq2','07-cake','08-photo','09-NaN','10-qqfind','11-price','12-shelf','13-list','14-star','15-raws','16-nav','17-roll','18-doMove','19-rainMove','20-shake','21-opacity','22-photoslide','23-time','24-timeslide','25-2photoslide','26-find','27-textMove','28-array','29-zoom','30-apple','31-photowall'];
+  var aDOM = ['01-text','02-className','03-add&remove','04-drag','05-dragbox','06-scroll'];
+  var aAJAX = ['01-demo','02-form']
+  var aRE = ['01-findNum','02-practise','03-practise2']
+  var aOOP = ['01-OOP','02-select','03-drag','04-component','05-window','06-event',]
+
+  var dir = ['JS-base','DOM','AJAX','RE','OOP'];
+  var aDir = [ 700, 150, 200, 100, 250 ];
+
+
+  var aOl = document.getElementsByTagName('ol');
+  var aLi = document.getElementsByClassName('title');
+  var aDiv = document.getElementsByTagName('div');
+  var start = 0;
+
+  for (var i = 0; i < aLi.length; i++) {
+    aLi[i].num = i;
+    aLi[i].onOff = true;
+    aLi[i].onclick = function() {
+      var _this = this;
+      clearInterval(this.timer);
+      this.timer = setInterval(function() {
+        var start = parseInt(getStyle(aDiv[_this.num],'height'));
+        if (_this.onOff) {
+          var iSpeed = (aDir[_this.num] - start) /10;
+        } else {
+          var iSpeed = -start /10;
+          console.log(iSpeed);
+        }
+        iSpeed = iSpeed >0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        aDiv[_this.num].style.height = start + iSpeed + 'px';
+        if (start == aDir[_this.num] && iSpeed == 0) {
+          clearInterval(_this.timer);
+          _this.onOff = false;
+        } else if (start == 0 && iSpeed == 0) {
+          clearInterval(_this.timer);
+          _this.onOff = true;
+        }
+      },20)
+    }
+  }
+
+  function getStyle(obj,attr){
+    if(obj.currentStyle){
+      return obj.currentStyle[attr];
+    }
+    else{
+      return getComputedStyle(obj,false)[attr];
+    }
+  }
+
+  var aList = [aJS, aDOM, aAJAX, aRE, aOOP]
+  for (var i = 0; i < aList.length; i++) {
+    fnList(aList[i],i+1,dir[i]);
+  }
+
+  function fnList(obj,num,dir) {
+    var arr = [];
+    for (var i = 0; i < obj.length; i++) {
+      arr.push(obj[i].split('-')[1]);
+      aOl[num].innerHTML += '<li><a href="' + dir +'/' +obj[i] + '.html">' + arr[i] + '</a></li>';
+    }
+  }
+
+  </script>
+</body>
+</html>

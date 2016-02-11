@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #lis {
+      width: 150px;
+      border: 2px solid #333;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    #lis ul {
+      display: none;
+    }
+    #lis ul li {
+      list-style-type: none;
+      padding: 2px 0;
+      background: lightyellow;
+      text-indent: 24px;
+    }
+    h2 {
+      background: seagreen;
+      padding: 5px 0;
+      margin: 0;
+      color: orange;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      text-indent: 24px;
+    }
+    .active {
+      background: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <ul id="lis">
+    <li>
+      <h2>我的好友</h2>
+      <ul>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+      </ul>
+    </li>
+    <li>
+      <h2>企业好友</h2>
+      <ul>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+        <li>李四</li>
+      </ul>
+    </li>
+    <li>
+      <h2>黑名单</h2>
+      <ul>
+        <li>张三</li>
+        <li>张三</li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    var oUl = document.getElementById('lis');
+    var oH2 = oUl.getElementsByTagName('h2');
+    var aUl = oUl.getElementsByTagName('ul');
+    var aLi = null;
+    var arrLi = [];
+    var num = null;
+
+    for (var i = 0; i < oH2.length; i++) {
+      oH2[i].index = i;
+      oH2[i].onclick = function () {
+        num = this.index;
+        for (var i = 0; i < aUl.length; i++) {
+          if (i != num) {
+            aUl[i].style.display = 'none';
+            oH2[i].className = '';
+          }
+        }
+        if (this.className == '') {
+          this.className = 'active';
+          aUl[num].style.display = 'block';
+        } else {
+          this.className = '';
+          aUl[num].style.display = 'none';
+        }
+      }
+    }
+
+    for (var i = 0; i < aUl.length; i++) {
+      aLi = aUl[i].getElementsByTagName('li');
+      for (var j = 0; j < aLi.length; j++) {
+        arrLi.push(aLi[j]);
+      }
+    }
+
+    for (var i = 0; i < arrLi.length; i++) {
+      arrLi[i].onclick = function () {
+        for (var i = 0; i < arrLi.length; i++) {
+          if( arrLi[i] != this) {
+            arrLi[i].style.background = 'lightyellow';
+          }
+        }
+
+        if (this.style.background != 'deeppink') {
+          this.style.background = 'deeppink';
+        } else {
+          this.style.background = 'lightyellow';
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

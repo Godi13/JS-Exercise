@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #contain {
+      width: 250px;
+      height: 400px;
+      border: 3px solid #333;
+      margin: 100px auto 0;
+      overflow: scroll;
+      border-bottom: 1.5px solid #333;
+    }
+    #content {
+      margin: 0 auto;
+      height: 25px;
+      background: #ccc;
+      width: 250px;
+      border: 3px solid #666;
+      padding-top: 5px;
+      border-top: none;
+    }
+    #box {
+      float: left;
+      width: 20px;
+      height: 20px;
+      background: deeppink;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    .tab {
+      margin-right: 10px;
+      margin-left: 15px;
+    }
+    .tx {
+      margin: 5px auto;
+    }
+    .greentx {
+      float: right;
+      width: 20px;
+      height: 20px;
+      background: seagreen;
+      cursor: pointer;
+      border-radius: 50%;
+      margin: 5px auto;
+    }
+    #text {
+      margin-right: 15px;
+    }
+    #btn {
+      cursor: pointer;
+    }
+    .red {
+      width: 200px;
+      margin: 2px 5px;
+      color: #fff;
+      background: deeppink;
+      padding: 5px;
+      float: left;
+      clear: both;
+      word-wrap: break-word;
+    }
+    .green {
+      width: 200px;
+      margin: 2px 5px;
+      color: #fff;
+      background: seagreen;
+      padding: 5px;
+      float: right;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div id="contain"></div>
+  <div id="content">
+    <div id="box" class="tab"></div>
+    <input type="text" id="text" />
+    <span id="btn">发送</span>
+  </div>
+
+  <script type="text/javascript">
+    var oBox = document.getElementById('box');
+    var oText = document.getElementById('text');
+    var oBtn = document.getElementById('btn');
+    var oCon = document.getElementById('contain');
+    var onOff = 'true';
+
+    oBox.onclick = function () {
+      if (onOff == 'true') {
+        oBox.style.background = 'seagreen';
+        onOff = 'false';
+      } else {
+        oBox.style.background = 'deeppink';
+        onOff = 'true';
+      }
+    }
+
+    oBtn.onclick = function () {
+      if (oText.value != ''){
+        if (onOff == 'true') {
+          oCon.innerHTML = '<div class="red">' + oText.value + '</div>' + '<div id="box" class="tx">' + '</div>' + oCon.innerHTML;
+          oText.value = '';
+        } else {
+          oCon.innerHTML = '<div class="green">' + oText.value + '</div>' + '<div class="greentx">' + '</div>' + oCon.innerHTML;
+          oText.value = '';
+        }
+      } else {
+        alert('请输入文字');
+      }
+    }
+  </script>
+</body>
+</html>

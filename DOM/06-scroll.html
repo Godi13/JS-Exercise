@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scroll</title>
+  <style>
+    #box1 {
+      width: 20px;
+      height: 400px;
+      background: black;
+      position: absolute;
+    }
+    #box2 {
+      width: 20px;
+      height: 20px;
+      background: red;
+      position: absolute;
+    }
+    #box3 {
+      width: 400px;
+      height: 0px;
+      background: green;
+      position: absolute;
+      top: 10px;
+      left: 40px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2"></div>
+  </div>
+  <div id="box3"></div>
+
+  <script>
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    var box3 = document.getElementById('box3');
+
+    box2.onmousedown = function (ev) {
+
+      var ev = ev || event;
+
+      var disY = ev.clientY - this.offsetTop;
+
+      var maxTop = box1.offsetHeight - this.offsetHeight;
+
+      document.onmousemove = function (ev) {
+
+        var ev = ev || event;
+
+        var T = ev.clientY - disY;
+
+        if (T < 0) {
+          T = 0
+        } else if (T > maxTop) {
+          T = maxTop;
+        }
+
+        box2.style.top = T + 'px';
+        box3.style.height = T / maxTop * 400 + 'px';
+
+      }
+
+      document.onmouseup = function () {
+        document.onmousemove = document.onmouseup = null;
+      }
+
+    }
+
+  </script>
+</body>
+</html>

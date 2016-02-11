@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body style="font-size:30px">
+  <p></p>
+  <input type="text" value="December 27,2016 23:04:12" style="width:200px"/>
+  <input type="button" value="倒计时" />
+  <p></p>
+  <div></div>
+
+  <script>
+  var aP = document.getElementsByTagName('p');
+  var oInp = document.getElementsByTagName('input');
+  var timer = null;
+  var oDiv = document.getElementsByTagName('div')[0];
+
+  function fnTime() {
+    var time = new Date();
+
+    var year = time.getFullYear();
+    var month = time.getMonth()+1;
+    var day = time.getDate();
+    var week = time.getDay();
+    var hours = time.getHours();
+    var minutes = time.getMinutes();
+    var seconds = time.getSeconds();
+
+    if (week == 0) { week = '星期日' };
+    if (week == 1) { week = '星期一' };
+    if (week == 2) { week = '星期二' };
+    if (week == 3) { week = '星期三' };
+    if (week == 4) { week = '星期四' };
+    if (week == 5) { week = '星期五' };
+    if (week == 6) { week = '星期六' };
+
+    str = '<br/>' + year + '年' + month + '月' + day + '日' + ' ' + week + ' ' + toTwo(hours) + ':' + toTwo(minutes) + ':' + toTwo(seconds);
+
+    aP[0].innerHTML = str;
+  }
+
+  setInterval(fnTime,1000);
+
+  function toTwo(n) {
+    return n < 10 ? '0' + n : '' + n;
+  }
+
+  oInp[1].onclick = function () {
+    var iNew = new Date(oInp[0].value);
+    clearInterval(timer);
+    timer = setInterval(function () {
+      var iNow = new Date();
+      var t = Math.floor((iNew - iNow)/1000);
+      if (t >= 0) {
+        str = Math.floor(t/86400) + '日' + Math.floor(t%86400/3600) + '时' + Math.floor(t%86400%3600/60) + '分' + t%60 + '秒';
+        aP[1].innerHTML = str;
+      } else {
+        clearInterval(timer);
+      }
+    },1000);
+  }
+
+
+  var arr = ['time/0.jpg','time/1.jpg','time/2.jpg','time/3.jpg','time/4.jpg','time/5.jpg','time/6.jpg','time/7.jpg','time/8.jpg','time/9.jpg','time/colon.jpg',];
+
+  for (var i = 0; i < 6; i++) {
+    oDiv.innerHTML += '<img style="width:30px" src="' + arr[i] + '" />';
+  }
+
+  var aImg = document.getElementsByTagName('img');
+
+  function time() {
+    var str = '';
+    var Time = new Date();
+    var Hours = Time.getHours();
+    var Minutes = Time.getMinutes();
+    var Seconds = Time.getSeconds();
+
+    str = toTwo(Hours) + toTwo(Minutes) + toTwo(Seconds);
+
+    for (var i = 0; i < str.length; i++) {
+      aImg[i].src = arr[str.charAt(i)];
+    }
+  }
+
+  setInterval(time,1000);
+
+  </script>
+
+</body>
+</html>

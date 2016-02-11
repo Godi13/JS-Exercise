@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>findNum</title>
+</head>
+<body>
+  <script>
+  var str = 'asljdjl123lj333lkj45ljklkjljh789';
+
+  // function findNum(str) {
+  //   var arr = [];
+  //   var tmp = '';
+  //
+  //   for (var i = 0; i < str.length; i++) {
+  //     if (str.charAt(i) <= '9' && str.charAt(i) >= '0') {
+  //       tmp += str[i];
+  //     } else {
+  //       if (tmp) {
+  //         arr.push(tmp);
+  //         tmp = '';
+  //       }
+  //     }
+  //   }
+  //   if (tmp) {
+  //     arr.push(tmp);
+  //     tmp = '';
+  //   }
+  //
+  //   return arr;
+  // }
+
+  console.log(findNum(str));
+
+  function findNum(str) {
+    return str.match(/\d+/g);
+  }
+  
+  </script>
+</body>
+</html>

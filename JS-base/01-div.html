@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #btn1 {
+      background: red;
+      border: none;
+      height: 30px;
+      width: 70px;
+      color: #fff;
+    }
+    #box {
+      border: 3.5px solid #000;
+      width: 80px;
+      height: 80px;
+      background: #fff;
+    }
+    #control {
+      border: 15px solid #888;
+      width: 250px;
+      height: 160px;
+      padding: 0 20px;
+      position: absolute;
+      right: 20px;
+      top: 200px;
+      display: none;
+    }
+    .sbox {
+      float: right;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #222;
+      text-align: center;
+      line-height: 30px;
+      margin: 0 5px;
+      font-size: 10px;
+    }
+    h4 {
+      margin: 10px auto;
+      line-height: 30px;
+      font-weight: normal;
+    }
+    .sub {
+      width: 90px;
+      display: block;
+      margin: 0 auto;
+    }
+    .btn2 {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h3>请为下面的DIV设置样式:
+    <input id="btn1" type="button" value="点击设置" /></h3>
+  </div>
+
+  <div id="box"></div>
+
+  <div id="control">
+    <h4>请选择背景色：
+      <div id="blue" class="sbox">蓝</div>
+      <div id="yellow" class="sbox">黄</div>
+      <div id="red" class="sbox">红</div>
+    </h4>
+    <h4>请选择宽(px)：
+      <div id="w400" class="sbox">400</div>
+      <div id="w300" class="sbox">300</div>
+      <div id="w200" class="sbox">200</div>
+    </h4>
+    <h4>请选择高(px)：
+      <div id="h400" class="sbox">400</div>
+      <div id="h300" class="sbox">300</div>
+      <div id="h200" class="sbox">200</div>
+    </h4>
+    <div class="sub">
+      <input type="button" value="恢复" class="btn2" id="re" />
+      <input type="button" value="确定" class="btn2" id="ok"/>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var btn1 = document.getElementById('btn1');
+    var ok = document.getElementById('ok');
+    var red = document.getElementById('red');
+    var yellow = document.getElementById('yellow');
+    var blue = document.getElementById('blue');
+    var box = document.getElementById('box');
+    var w200 = document.getElementById('w200');
+    var w300 = document.getElementById('w300');
+    var w400 = document.getElementById('w400');
+    var re = document.getElementById('re');
+
+    btn1.onclick = function () {
+      document.getElementById('control').style.display = 'block';
+    }
+    ok.onclick = function () {
+      document.getElementById('control').style.display = 'none';
+    }
+
+    red.onmouseover = function () {
+      red.style.background = 'red';
+    }
+    red.onmouseout = function () {
+      red.style.background = '#fff';
+    }
+    red.onclick = function () {
+      box.style.background = 'red';
+    }
+
+    yellow.onmouseover = function () {
+      yellow.style.background = 'yellow';
+    }
+    yellow.onmouseout = function () {
+      yellow.style.background = '#fff';
+    }
+    yellow.onclick = function () {
+      box.style.background = 'yellow';
+    }
+
+    blue.onmouseover = function () {
+      blue.style.background = 'blue';
+    }
+    blue.onmouseout = function () {
+      blue.style.background = '#fff';
+    }
+    blue.onclick = function () {
+      box.style.background = 'blue';
+    }
+
+    w200.onmouseover = function () {
+      w200.style.background = 'orange';
+    }
+    w200.onmouseout = function () {
+      w200.style.background = '#fff';
+    }
+    w200.onclick = function () {
+      box.style.width = 200 + 'px';
+    }
+
+    re.onclick = function () {
+      box.style.border = '3.5px solid #000';
+      box.style.width = 80 + 'px';
+      box.style.height = 80 + 'px';
+      box.style.background = '#fff';
+    }
+  </script>
+</body>
+</html>

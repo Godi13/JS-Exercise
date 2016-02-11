@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style media="screen">
+    img {
+      width: 200px;
+      height: 240px;
+      position: absolute;
+    }
+    #container {
+      position: relative;
+      width: 200px;
+      height: 240px;
+      overflow: hidden;
+      left: 50%;
+      margin-left: -100px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img src="img/1.png" />
+    <img src="img/2.png" />
+  </div>
+  
+  <script src="main.js"></script>
+  <script>
+    var oDiv = document.getElementById('container');
+    var aImg = oDiv.getElementsByTagName('img');
+    aImg[0].style.left = '0px';
+    aImg[1].style.left = '200px';
+    var num = 0;
+
+      setInterval(function() {
+        doMove(aImg[num],'left',10,-200);
+        num == 0 ? num = 1 : num = 0;
+        doMove(aImg[num],'left',10,0);
+
+        setTimeout(function() {
+          num == 1 ? num = 0 : num = 1;
+          aImg[num].style.left = '200px';
+          num == 0 ? num = 1 : num = 0;
+        },1000)
+      },2000)
+
+
+
+
+  </script>
+</body>
+</html>

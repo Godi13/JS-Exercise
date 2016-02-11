@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="text">
+  <input id="btn" type="button" value="发送">
+  <input id="delete" type="button" value="批量删除">
+  <ul id="ul"></ul>
+  <script>
+  var oBtn = document.getElementById('btn');
+  var oTxt = document.getElementById('text');
+  var oUl = document.getElementById('ul');
+  var aLi = oUl.getElementsByTagName('li');
+  var oDel = document.getElementById('delete');
+
+  oBtn.onclick = function () {
+    var oLi = document.createElement('li');
+    oLi.innerHTML = oTxt.value;
+
+    var oA = document.createElement('a');
+    oA.href = 'javascript:;';
+    oA.innerHTML = '删除';
+    oA.onclick = function () {
+      oUl.removeChild(this.parentNode);
+    }
+
+    oLi.appendChild(oA);
+
+    if (oUl.children[0]) {
+      oUl.insertBefore(oLi,oUl.children[0]);
+    } else {
+      oUl.appendChild(oLi);
+    }
+
+
+    if (oUl.children.length > 5) {
+      oUl.removeChild(oUl.lastElementChild);
+    }
+
+    for (var i = 0; i < aLi.length; i++) {
+      aLi[i].onOff = true;
+      aLi[i].style.cursor = 'pointer';
+      aLi[i].onclick = function() {
+        if (this.onOff) {
+          this.style.background = 'yellow';
+          this.onOff = false;
+        } else {
+          this.style.background = '#fff';
+          this.onOff = true;
+        }
+      }
+    }
+  }
+
+  oDel.onclick = function () {
+    for (var i = 0; i < aLi.length; i++) {
+      if (!aLi[i].onOff) {
+        oUl.removeChild(aLi[i]);
+      }
+    }
+  }
+
+
+  </script>
+</body>
+</html>

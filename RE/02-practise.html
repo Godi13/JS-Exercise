@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practise</title>
+</head>
+<body>
+  <textarea id="txt1" name="name" rows="4" cols="40"></textarea>
+  <br/>
+  <input id="btn" value="转换" type="button">
+  <br/>
+  <textarea id="txt2" name="name" rows="4" cols="40"></textarea>
+  <script>
+  var oBtn = document.getElementById('btn');
+  var oT1 = document.getElementById('txt1');
+  var oT2 = document.getElementById('txt2');
+
+  //去掉大写字母
+  // var str = 'aASDjjsaSHHdsfAjkksdfhjk';
+  // var re = /[A-Z]/g;
+
+  //去掉数字
+  // var str = 'asd123aasd123432';
+  // var re = /\d/g;
+
+  //匹配成对标签
+  // var str = '<div class="box">Hello</div>';
+  // var re = /<[^>]+>/g;
+
+  //匹配13~99之间的年龄
+  var str = [38,12,34,56,7,11,74,32,99,110];
+  var re = /1[3-9]|[2-9][0-9]/g;
+
+  oT1.value = str;
+
+  // oBtn.onclick = function () {
+  //   oT2.value = oT1.value.replace(re,'');
+  // }
+
+  oBtn.onclick = function () {
+    oT2.value = str.join().match(re);
+  }
+
+
+  </script>
+</body>
+</html>

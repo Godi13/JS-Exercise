@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opacity</title>
+  <style>
+  #container {
+    margin-top: 200px;
+    width: 400px;
+    height: 50px;
+    border: 1px solid #333;
+    position: relative;
+  }
+  .box {
+    position: absolute;
+    top: 0;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+  }
+  #background {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: rgb(50, 200, 230);
+    z-index: -1;
+  }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div class="box">+1</div>
+    <div id="background"></div>
+  </div>
+
+  <script>
+  var oCon = document.getElementById('container');
+  var aBox = oCon.getElementsByClassName('box');
+  var bg = document.getElementById('background');
+
+  for (var i = 0; i < aBox.length; i++) {
+    aBox[i].style.left = i * 50 + 'px';
+  }
+
+  function getStyle(obj,attr) {
+    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+  };
+
+  oCon.onclick = function () {
+    if (this.onOff) {return};
+    this.onOff = true;
+    var num = 0;
+
+    doMove(bg,'width',5,400);
+    fnOp(bg,20);
+
+    this.timer = setInterval(function() {
+      doMove(aBox[num],'top',2,-200);
+      fnOp(aBox[num],10);
+      num++;
+      if (num == aBox.length) {
+        clearInterval(oCon.timer);
+      };
+    },200);
+
+    setTimeout(function() {
+      var add = 0;
+      oCon.fadein = setInterval(function() {
+        for (var i = 0; i < aBox.length; i++) {
+          aBox[i].style.opacity = add / 10;
+        }
+        add ++;
+        if (aBox[0].style.opacity > 1) {
+          clearInterval(oCon.fadein);
+          bg.style.width = 0;
+          bg.style.opacity = 1;
+          oCon.onOff = false;
+        }
+      },80)
+    },3000)
+  }
+
+  function doMove(obj,attr,dir,target) {
+    dir = parseInt(getStyle(obj,attr)) < target ? dir : -dir;
+
+    clearInterval(obj.runtimer);
+
+    obj.runtimer = setInterval(function() {
+      var pos = parseInt(getStyle(obj,attr));
+      var speed = pos + dir;
+
+      if (speed < target && dir < 0 || speed > target && dir > 0) {
+        speed = target;
+      }
+
+      obj.style[attr] = speed + 'px';
+
+      if (speed == target && dir < 0) {
+        clearInterval(obj.runtimer);
+        obj.style[attr] = 0;
+      } else if (speed == target) {
+        clearInterval(obj.runtimer);
+      }
+
+    },10)
+
+  }
+
+  function fnOp(obj, time) {
+    var opa = parseFloat(getStyle(obj, 'opacity'));
+    var num = 0;
+
+    clearInterval(obj.timer);
+
+    obj.timer = setInterval(function () {
+      obj.style.opacity = (opa * 100 + num) / 100;
+      num --;
+
+      if (obj.style.opacity < 0) {
+        clearInterval(obj.timer);
+      }
+    },time)
+
+  }
+
+  </script>
+</body>
+</html>

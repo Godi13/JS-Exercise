@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nav</title>
+  <style>
+    nav {
+      background: lightblue;
+      height: 40px;
+      width: 340px;
+      line-height: 40px;
+      border-radius: 5px;
+    }
+    ul {
+      margin: 0;
+    }
+    ul li {
+      padding:0 10px;
+      list-style: none;
+      display: inline;
+      border-right: 1px solid #aaa;
+    }
+    ul li:first-child {
+      border-left: 1px solid #aaa;
+    }
+    ul li:hover {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      background: lightyellow;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .snav {
+      height: 30px;
+      background: lightgreen;
+      width: 270px;
+      line-height: 30px;
+      position: relative;
+      margin-top: 7px;
+      display: none;
+      border-radius: 4px;
+    }
+    .snav li {
+      font-size: 12px;
+    }
+    .snav li:hover{
+      height: 20px;
+      line-height: 20px;
+
+    }
+    .triangle {
+      position: absolute;
+      top: -10px;
+      left: 60px;
+      border-top: 5px solid transparent;
+      border-left: 5px solid transparent;
+      border-bottom: 5px solid lightgreen;
+      border-right: 5px solid transparent;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul id="nav">
+      <li>首页</li>
+      <li>我们</li>
+      <li>作品</li>
+      <li>博客</li>
+    </ul>
+  </nav>
+
+  <div class="snav">
+    <div class="triangle"></div>
+    <ul>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+    </ul>
+  </div>
+  <div class="snav">
+    <div class="triangle"></div>
+    <ul>
+      <li>嘿嘿</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+    </ul>
+  </div>
+  <div class="snav">
+    <div class="triangle"></div>
+    <ul>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+    </ul>
+  </div>
+  <div class="snav">
+    <div class="triangle"></div>
+    <ul>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+      <li>哈哈</li>
+    </ul>
+  </div>
+  <script>
+    var nav = document.getElementById('nav');
+    var aLi = nav.getElementsByTagName('li');
+    var snav = document.getElementsByClassName('snav');
+    var timer = null;
+
+    for (var i = 0; i < aLi.length; i++) {
+      aLi[i].index = i;
+      snav[i].index = i;
+
+      aLi[i].onmouseover = show;
+      aLi[i].onmouseout = hide;
+
+      snav[i].onmouseover = function () {
+        clearInterval(timer);
+        this.style.display = 'block';
+      };
+      snav[i].onmouseout = function () {
+        var that = this;
+        timer = setTimeout(function () {
+          snav[that.index].style.display = 'none';
+        },1000);
+      };
+
+      function show() {
+        clearInterval(timer);
+        for (var i = 0; i < snav.length; i++) {
+          snav[i].style.display = 'none';
+        }
+        snav[this.index].style.display = 'block';
+        snav[this.index].style.left = this.index * 58 + 'px';
+      }
+      function hide() {
+        var that = this;
+
+        timer = setTimeout(function() {
+          snav[that.index].style.display = 'none';
+        },1000);
+      }
+    }
+
+
+  </script>
+</body>
+</html>

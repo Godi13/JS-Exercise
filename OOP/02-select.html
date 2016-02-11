@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select</title>
+  <style>
+    #div1 div,#div2 div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+      display: none;
+    }
+    .active {
+      background: red;
+    }
+  </style>
+  <script>
+    // 普通方法
+    // window.onload = function() {
+    //   var oParent = document.getElementById('div1');
+    //   var aInput = oParent.getElementsByTagName('input');
+    //   var aDiv = oParent.getElementsByTagName('div');
+    //
+    //   for (var i = 0; i < aInput.length; i++) {
+    //     aInput[i].index = i;
+    //     aInput[i].onclick = function () {
+    //       for (var i = 0; i < aInput.length; i++) {
+    //           aInput[i].className = '';
+    //           aDiv[i].style.display = 'none';
+    //       }
+    //       this.className = 'active';
+    //       aDiv[this.index].style.display = 'block';
+    //     }
+    //   }
+    // }
+
+
+    //变型
+    // var oParent = null;
+    // var aInput = null;
+    // var aDiv = null;
+    //
+    // window.onload = function() {
+    //   oParent = document.getElementById('div1');
+    //   aInput = oParent.getElementsByTagName('input');
+    //   aDiv = oParent.getElementsByTagName('div');
+    //
+    //   init();
+    // }
+    //
+    // function init () {
+    //   for (var i = 0; i < aInput.length; i++) {
+    //     aInput[i].index = i;
+    //     aInput[i].onclick = change;
+    //   }
+    // }
+    //
+    // function change () {
+    //   for (var i = 0; i < aInput.length; i++) {
+    //     aInput[i].className = '';
+    //     aDiv[i].style.display = 'none';
+    //   }
+    //   this.className = 'active';
+    //   aDiv[this.index].style.display = 'block';
+    // }
+
+    //改成面向对象
+    window.onload = function () {
+      var t1 = new Tab('div1');
+      t1.init();
+
+      var t2 = new Tab('div2');
+      t2.init();
+      t2.autoplay();
+    }
+
+    function Tab(id) {
+      this.oParent = document.getElementById(id);
+      this.aInput = this.oParent.getElementsByTagName('input');
+      this.aDiv = this.oParent.getElementsByTagName('div');
+      this.iNow = 0;
+    }
+
+    Tab.prototype.init = function () {
+      var _this = this;
+      for (var i = 0; i < this.aInput.length; i++) {
+        this.aInput[i].index = i;
+        this.aInput[i].onclick = function() {
+          _this.change(this);
+        };
+      }
+    }
+
+    Tab.prototype.change = function (obj) {
+      for (var i = 0; i < this.aInput.length; i++) {
+        this.aInput[i].className = '';
+        this.aDiv[i].style.display = 'none';
+      }
+      obj.className = 'active';
+      this.aDiv[obj.index].style.display = 'block';
+    }
+
+    Tab.prototype.autoplay = function () {
+      var This = this;
+
+      setInterval(function () {
+        if (This.iNow == This.aInput.length - 1) {
+          This.iNow = 0;
+        } else {
+          This.iNow++;
+        }
+
+        for (var i = 0; i < This.aInput.length; i++) {
+          This.aInput[i].className = '';
+          This.aDiv[i].style.display = 'none';
+        }
+        This.aInput[This.iNow].className = 'active';
+        This.aDiv[This.iNow].style.display = 'block';
+      },1000)
+
+    }
+
+  </script>
+</head>
+<body>
+  <div id="div1">
+    <input class="active" type="button" value="1" />
+    <input type="button" value="2" />
+    <input type="button" value="3" />
+    <div style="display:block">11111</div>
+    <div>22222</div>
+    <div>33333</div>
+  </div>
+  <div id="div2">
+    <input class="active" type="button" value="1" />
+    <input type="button" value="2" />
+    <input type="button" value="3" />
+    <div style="display:block">11111</div>
+    <div>22222</div>
+    <div>33333</div>
+  </div>
+</body>
+</html>
